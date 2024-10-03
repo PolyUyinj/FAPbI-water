@@ -1,0 +1,42 @@
+Startparameters for slab 
+# Gloabal paramters
+ISTART = 0              # Read existing wavefunction =1
+ICHARG = 2             # Default=2 if ISTART=0. Non-self-consistent: GGA/LDA band structures, =11
+LWAVE =.FALSE.         # Write WAVECAR or not
+LCHARG = .FALSE.
+KSPACING = 0.20
+KGAMMA = .TRUE.
+
+# Parallelisation
+LPLANE = .FALSE.       # Real space distribution; supercells 
+#NCORE = 1              # Max is no. nodes; don't set for hybrids##
+# NSIM = 1             # Divides k-grid into separate groups
+#KPAR = 4               # Divides k-grid into separate groups
+NPAR = 8             # Divides k-grid into separate groups
+
+# Electronic relaxation
+METAGGA = SCAN #below settings is for SCAN+rvv10
+LUSE_VDW  = .TRUE.
+LASPH = .TRUE.
+BPARAM = 15.7    # the default value is 6.3
+CPARAM = 0.0093  # default but can be overwritten by this tag
+LASPH = .TRUE.
+PREC = Accurate          # Precision level, Normal or High
+LREAL = Auto           # Auto for molecule containing for than 20 ionics
+ENCUT = 550
+NELM = 100              # Max SCF steps
+NELMIN = 5             # MIN SCF steps
+EDIFF = 1E-06          # SCF energy convergence, this number is quite precise
+ISPIN = 1              # Closed shell DFT
+#ISYM = 2
+
+
+# Ionic relaxation
+#EDIFFG =  -0.01       # Ionic convergence; eV/AA^3
+#NSW = 0             # MAX Inonic relaxation steps
+#ISIF = 2               # For single point enegy
+#IBRION = -1             # = -1 for NSW = -1 or 0
+# POTIM = 0.015        # Step width in ionic relaxations.
+ADDGRID = .TRUE.     # Increase grid; helps GGA convergence
+ISMEAR = 0             # Gaussian smearing; metals:1
+SIGMA = 0.05           # Smearing value in eV; metals:0.2
