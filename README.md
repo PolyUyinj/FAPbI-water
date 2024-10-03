@@ -8,4 +8,4 @@
 ## 111-PbI
 - Contains input of LAMMPS and rendered snapshots of vacuum and interface simulation results for (111) PbI<sub>2</sub>-rich facet.
 ## VASP-input
-- The DFT input for calculating training dataset.
+- The DFT input for calculating downstream training dataset.
