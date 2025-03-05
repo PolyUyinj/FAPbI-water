@@ -1,0 +1,27 @@
+units           metal
+boundary        p p p
+atom_style      atomic
+variable        temp equal 300
+
+neighbor        2.0 bin
+
+read_data	    model.data
+pair_style      deepmd ../../graph-compress.pb
+pair_coeff      * * C H I N O Pb
+#replicate	    8 8 8
+
+thermo_style    custom step temp pe ke etotal press vol lx ly lz density spcpu cpuremain
+thermo          10
+timestep        0.0005 
+
+# equilibrium 50 ps, 500fs per snapshot
+fix     1 all nvt temp ${temp} ${temp} 0.05
+dump	traj1 all custom 1000 md1.lammpstrj id type element x y z
+dump_modify  traj1 element C H I N O Pb
+restart 10000 restart.%.1 restart.%.2 nfile 10
+run 	200000
+unfix   1
+undump traj1
+
+write_data      ${temp}.data
+
